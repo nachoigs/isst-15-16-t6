@@ -1,23 +1,25 @@
 package es.upm.dit.isst.tfg.dao;
 
-import es.upm.dit.isst.tfg.model.Tfg;
+import java.util.List;
+
+import es.upm.dit.isst.tfg.model.TFG;
 
 public interface TFGDAO {
 	public void insertData(String autor, String titulo, String resumen, String tutor, String secretario, String fichero, int estado);
 	
-	public Tfg getTfg(String autor);
+	public TFG getTfg(String autor);
 	
-	public Tfg[] getAllTfg();
+	public List<TFG> getAllTfg();
 	
-	public Tfg[] getByTutor(String tutor);
+	public List<TFG> getByTutor(String tutor);
 	
-	public Tfg[] getBySecretario(String secretario);
+	public List<TFG> getBySecretario(String secretario);
 	
-	public Tfg[] getByEstado(int estado);
+	public List<TFG> getByEstado(int estado);
 	
-	public void update(Tfg tfg);
+	public void update(TFG tfg);
 	
-	public void delete(Tfg tfg);
+	public void delete(TFG tfg);
 
 
 
