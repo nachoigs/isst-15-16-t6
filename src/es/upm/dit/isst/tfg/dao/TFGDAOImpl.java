@@ -37,7 +37,7 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public TFG getTfg(String autor) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.autor = :autor");
+		Query q = em.createQuery("SELECT m FROM TFG m WHERE m.autor = :autor");
 		q.setParameter("autor", autor);
 		TFG retornar = (TFG) q.getSingleResult();
 		em.close();
@@ -47,7 +47,7 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> getAllTfg() {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM TFG m");
+		Query q = em.createQuery("SELECT m FROM TFG m");
 		List<TFG> retornar = q.getResultList();
 		em.close();
 		return retornar;
@@ -56,7 +56,7 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> getByTutor(String tutor) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.autor = :tutor");
+		Query q = em.createQuery("SELECT m FROM TFG m WHERE m.autor = :tutor");
 		q.setParameter("tutor", tutor);
 		List<TFG> retornar = q.getResultList();
 		em.close();
@@ -66,7 +66,7 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> getBySecretario(String secretario) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.secretario = :secretario");
+		Query q = em.createQuery("SELECT m FROM TFG m WHERE m.secretario = :secretario");
 		q.setParameter("secretario", secretario);
 		List<TFG> retornar = q.getResultList();
 		em.close();
@@ -76,7 +76,7 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public List<TFG> getByEstado(int estado) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("SELECT * FROM TFG m WHERE m.estado = :estado");
+		Query q = em.createQuery("SELECT m FROM TFG m WHERE m.estado = :estado");
 		q.setParameter("estado", estado);
 		List<TFG> retornar = q.getResultList();
 		em.close();
@@ -96,8 +96,11 @@ public class TFGDAOImpl implements TFGDAO {
 	@Override
 	public void delete(TFG tfg) {
 		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("SELECT m FROM TFG m WHERE m.autor = :tutor");
+		q.setParameter("tutor", tfg.getAutor());
+		TFG eliminar = (TFG) q.getSingleResult();
 		
-		em.remove(tfg);
+		em.remove(eliminar);
 		
 		em.close();
 
