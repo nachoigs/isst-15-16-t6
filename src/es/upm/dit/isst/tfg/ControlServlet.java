@@ -24,5 +24,7 @@ public class ControlServlet  extends HttpServlet  {
         }
         
         TFGDAOImpl.getInstance().insertData(autor, titulo, resumen, tutor, "", "", 1);
+        
+        resp.sendRedirect("/es_upm_dit_isst_tfg");
 	}
 }

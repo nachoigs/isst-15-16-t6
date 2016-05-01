@@ -25,7 +25,7 @@
             <td><c:out value="${tfg.tutor}" /></td>
             <td><c:out value="${tfg.estado}" /></td>
         </tr>
-    </c:forEach>
+</c:forEach>
 
 <c:if test="${not empty user and empty tfg and empty tfgs}">
 Alumno: esta es una solicitud de TFG
